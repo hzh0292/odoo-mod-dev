@@ -11,16 +11,14 @@
     'author': "Jeanphy Huang",
     'website': "https://jeanphy.online",
 
-
     'category': 'Uncategorized',
-    'version': '0.1',
-
+    'version': '12.0.0.1.0',
 
     'depends': ['base', 'sale_management'],
 
-    'external_dependencies' : {
-        'python' : ['zhconv'],
-    }
+    'external_dependencies': {
+        'python': ['zhconv'],
+    },
 
     'application': True,
 
