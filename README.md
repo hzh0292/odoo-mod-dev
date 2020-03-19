@@ -1,1 +1,0 @@
-# odoo-mod-dev
