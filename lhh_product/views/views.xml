@@ -8,6 +8,7 @@
                 <tree>
                     <field name="name"/>
                     <field name="chn_desc1" string="名稱"/>
+                    <field name="chn_desc2" invisible="1"/>
                     <field name="chn_desc0" string="名称"/>
                     <field name="eng_desc2" string="Name"/>
                     <field name="pic_link" widget="url"/>
@@ -203,17 +204,6 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="lhh_product_graph_view">
-            <field name="name">产品图表视图</field>
-            <field name="model">lhh.product</field>
-            <field name="arch" type="xml">
-                <graph string="各品牌产品数量" type="pie">
-                    <field name="cat_l1"/>
-                </graph>
-            </field>
-        </record>
-
-
         <record id="lhh_product_search_view" model="ir.ui.view">
             <field name="name">产品搜索视图</field>
             <field name="model">lhh.product</field>
@@ -223,13 +213,27 @@
                     <field name="chn_desc2" string="名稱"/>
                     <field name="chn_desc0" string="名称"/>
                     <field name="eng_desc2" string="Name"/>
-                    <filter string="分类" name="group_by_category" domain="[]" context="{'group_by' : 'cat_l1'}"/>
-                    <filter string="品牌" name="group_by_brand" domain="[]" context="{'group_by' : 'brand'}"/>
+		            <filter string="品牌" name="group_by_brand" domain="[]" context="{'group_by' : 'brand'}"/>
                     <filter string="系列" name="group_by_series" domain="[]" context="{'group_by' : 'series'}"/>
+					<separator/>
+                    <filter string="L1分类" name="group_by_category1" domain="[]" context="{'group_by' : 'cat_l1'}"/>
+                    <filter string="L2分类" name="group_by_category2" domain="[]" context="{'group_by' : 'cat_l2'}"/>
+                    <filter string="L3分类" name="group_by_category3" domain="[]" context="{'group_by' : 'cat_l3'}"/>
+                    <filter string="L4分类" name="group_by_category4" domain="[]" context="{'group_by' : 'cat_l4'}"/>
                     <filter string="华乐诗" name="filter_walrus" domain="[('brand','ilike','walrus')]"/>
                     <separator/>
                     <filter string="图片链接" name="filter_pic_link" domain="[('pic_link','!=','')]"/>
                 </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="lhh_product_graph_view">
+            <field name="name">产品图表视图</field>
+            <field name="model">lhh.product</field>
+            <field name="arch" type="xml">
+                <graph string="各品牌产品数量" type="pie">
+                    <field name="cat_l1"/>
+                </graph>
             </field>
         </record>
 
