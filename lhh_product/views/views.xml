@@ -231,7 +231,7 @@
             <field name="name">产品图表视图</field>
             <field name="model">lhh.product</field>
             <field name="arch" type="xml">
-                <graph string="各品牌产品数量" type="pie">
+                <graph string="类别产品数量" type="pie">
                     <field name="cat_l1"/>
                 </graph>
             </field>

@@ -13,7 +13,7 @@
 
 
     'category': 'Uncategorized',
-    'version': '1.0',
+    'version': '12.0.0.1.0',
 
 
     'depends': ['base', 'sale_management'],
