@@ -1,0 +1,248 @@
+<odoo>
+    <data>
+
+        <record id="lhh_product_list" model="ir.ui.view">
+            <field name="name">产品列表视图</field>
+            <field name="model">lhh.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="chn_desc1" string="名稱"/>
+                    <field name="chn_desc0" string="名称"/>
+                    <field name="eng_desc2" string="Name"/>
+                    <field name="pic_link" widget="url"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="lhh_product_form" model="ir.ui.view">
+            <field name="name">产品表单视图</field>
+            <field name="model">lhh.product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>
+
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="name"/>
+                            <h1>
+                                <button icon="fa-search" disabled="disabled"/>
+                                <field name="name" placeholder="产品型号"/>
+                                <button icon="fa-arrow-right" disabled="disabled"/>
+                                <field name="chn_desc0"/>
+                            </h1>
+
+                            <h2 class="o_row row no-gutters d-flex">
+                                <div class="col">
+                                    <label for="chn_desc2" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <button icon="fa-shopping-bag" disabled="disabled"/>
+                                        <field name="chn_desc2" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="s_eng_desc1" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <button icon="fa-language" disabled="disabled"/>
+                                        <field name="s_eng_desc1" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </h2>
+                            <h2 class="o_row row no-gutters d-flex">
+                                <div class="col">
+                                    <label for="chn_desc1" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <button icon="fa-ticket" disabled="disabled"/>
+                                        <field name="chn_desc1" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="eng_desc2" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <button icon="fa-language" disabled="disabled"/>
+                                        <field name="eng_desc2" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </h2>
+
+                            <h2 class="o_row row no-gutters d-flex">
+                                <div class="col">
+                                    <label for="cat_l1" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <button icon="fa-sitemap" disabled="disabled"/>
+                                        <field name="cat_l1" class="oe_inline"/>
+                                        <button icon="fa-chevron-right" disabled="disabled"
+                                                class="text-warning bg-white"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="cat_l2" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <field name="cat_l2" class="oe_inline"/>
+                                        <button icon="fa-chevron-right" disabled="disabled"
+                                                class="text-warning bg-white"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="cat_l3" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <field name="cat_l3" class="oe_inline"/>
+                                        <button icon="fa-chevron-right" disabled="disabled"
+                                                class="text-warning bg-white"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="cat_l4" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <field name="cat_l4" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </h2>
+
+                            <h2 class="o_row row no-gutters d-flex">
+                                <div class="col">
+                                    <label for="brand" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <button icon="fa-trophy" disabled="disabled"/>
+                                        <field name="brand" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="series" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <button icon="fa-diamond" disabled="disabled"/>
+                                        <field name="series" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="color" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <button icon="fa-paint-brush" disabled="disabled"/>
+                                        <field name="color" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="uom" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <button icon="fa-cubes" disabled="disabled"/>
+                                        <field name="uom" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="size" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <button icon="fa-balance-scale" disabled="disabled"/>
+                                        <field name="size" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="remarks" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <button icon="fa-edit" disabled="disabled"/>
+                                        <field name="remarks" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </h2>
+
+                            <h2 class="o_row row no-gutters d-flex">
+                                <div class="col">
+                                    <label for="a1" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <span class="text-muted">A1</span>
+                                        <field name="a1" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="a2" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <span class="text-muted">A2</span>
+                                        <field name="a2" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="a3" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <span class="text-muted">A3</span>
+                                        <field name="a3" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="a4" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <span class="text-muted">A4</span>
+                                        <field name="a4" class="oe_inline"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="a5" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <span class="text-muted">A5</span>
+                                        <field name="a5" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </h2>
+
+                            <h3 class="o_row row no-gutters d-flex">
+                                <div class="col">
+                                    <label for="pic_link" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <button icon="fa-file-photo-o" disabled="disabled"/>
+                                        <field name="pic_link" class="oe_inline" widget="url"/>
+                                    </div>
+                                </div>
+                            </h3>
+
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="lhh_product_graph_view">
+            <field name="name">产品图表视图</field>
+            <field name="model">lhh.product</field>
+            <field name="arch" type="xml">
+                <graph string="各品牌产品数量" type="pie">
+                    <field name="cat_l1"/>
+                </graph>
+            </field>
+        </record>
+
+
+        <record id="lhh_product_search_view" model="ir.ui.view">
+            <field name="name">产品搜索视图</field>
+            <field name="model">lhh.product</field>
+            <field name="arch" type="xml">
+                <search string="产品搜索">
+                    <field name="name" string="型号"/>
+                    <field name="chn_desc2" string="名稱"/>
+                    <field name="chn_desc0" string="名称"/>
+                    <field name="eng_desc2" string="Name"/>
+                    <filter string="分类" name="group_by_category" domain="[]" context="{'group_by' : 'cat_l1'}"/>
+                    <filter string="品牌" name="group_by_brand" domain="[]" context="{'group_by' : 'brand'}"/>
+                    <filter string="系列" name="group_by_series" domain="[]" context="{'group_by' : 'series'}"/>
+                    <filter string="华乐诗" name="filter_walrus" domain="[('brand','ilike','walrus')]"/>
+                    <separator/>
+                    <filter string="图片链接" name="filter_pic_link" domain="[('pic_link','!=','')]"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_window_lhh_product">
+            <field name="name">联兴行产品资料</field>
+            <field name="res_model">lhh.product</field>
+            <field name="context">{'search_default_filter_walrus':1}</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+        <menuitem name="LHH产品信息" id="menu_lhh_product" action="action_window_lhh_product"
+                  parent="sale.product_menu_catalog" sequence="3"/>
+
+    </data>
+</odoo>
