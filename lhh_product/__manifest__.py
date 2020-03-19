@@ -13,14 +13,14 @@
 
 
     'category': 'Uncategorized',
-    'version': '0.1',
+    'version': '1.0',
 
 
     'depends': ['base', 'sale_management'],
 
     'external_dependencies' : {
         'python' : ['zhconv'],
-    }
+    },
 
     'application': True,
 
