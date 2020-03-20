@@ -222,6 +222,7 @@
                     <filter string="华乐诗" name="filter_walrus" domain="[('brand','ilike','walrus')]"/>
                     <separator/>
                     <filter string="图片链接" name="filter_pic_link" domain="[('pic_link','!=','')]"/>
+                    <filter string="已归档" name="filter_inactive" domain="[('active','=',False)]"/>
                 </search>
             </field>
         </record>
