@@ -208,7 +208,7 @@
                     <field name="chn_desc2" string="名稱"/>
                     <field name="chn_desc0" string="名称"/>
                     <field name="eng_desc2" string="Name"/>
-		            <filter string="品牌" name="group_by_brand" domain="[]" context="{'group_by' : 'brand'}"/>
+		    <filter string="品牌" name="group_by_brand" domain="[]" context="{'group_by' : 'brand'}"/>
                     <filter string="系列" name="group_by_series" domain="[]" context="{'group_by' : 'series'}"/>
 					<separator/>
                     <filter string="L1分类" name="group_by_category1" domain="[]" context="{'group_by' : 'cat_l1'}"/>
@@ -217,7 +217,8 @@
                     <filter string="L4分类" name="group_by_category4" domain="[]" context="{'group_by' : 'cat_l4'}"/>
                     <filter string="华乐诗" name="filter_walrus" domain="[('brand','ilike','walrus')]"/>
                     <separator/>
-                    <filter string="图片链接" name="filter_pic_link" domain="[('pic_link','!=','')]"/>
+		    <filter string="图片链接" name="filter_pic_link" domain="[('pic_link','!=','')]"/>
+		    <filter string="已归档" name="filter_inactive" domain="[('active','=',False)]"/>
                 </search>
             </field>
         </record>
