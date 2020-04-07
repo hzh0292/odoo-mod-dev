@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+product_info,product.info,model_product_info,base.group_user,1,1,1,1
+product_photo,product.photo,model_product_photo,base.group_user,1,1,1,1
+product_cert,product.certification,model_product_certification,base.group_user,1,1,1,1

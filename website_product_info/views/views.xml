@@ -1,0 +1,282 @@
+<odoo>
+    <data>
+
+        <record id="website_product_list" model="ir.ui.view">
+            <field name="name">产品列表视图</field>
+            <field name="model">product.info</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="desc"/>
+                    <field name="type"/>
+                    <field name="size"/>
+                    <field name="color"/>
+                    <field name="state"/>
+                    <field name="web_url" widget="url"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="website_product_info_search_view" model="ir.ui.view">
+            <field name="name">官网上架产品搜索视图</field>
+            <field name="model">product.info</field>
+            <field name="arch" type="xml">
+                <search string="官网上架产品搜索">
+                    <field name="name" string="型号"/>
+                    <field name="desc" string="名称"/>
+                    <filter string="分类" name="group_by_category" domain="[]" context="{'group_by' : 'type'}"/>
+                    <filter string="状态" name="group_by_state" domain="[]" context="{'group_by' : 'state'}"/>
+                    <filter string="连体坐便式" name="filter_toilet_1" domain="[('type','=','a')]"/>
+                    <filter string="分体坐便式" name="filter_toilet_2" domain="[('type','=','b')]"/>
+                    <filter string="墙排坐便式" name="filter_toilet_3" domain="[('type','=','c')]"/>
+                    <filter string="台上盆" name="filter_n" domain="[('type','=','n')]"/>
+                    <filter string="台下盆" name="filter_n2" domain="[('type','=','n2')]"/>
+                    <filter string="半嵌盆" name="filter_n3" domain="[('type','=','n3')]"/>
+                    <filter string="台面盆" name="filter_n4" domain="[('type','=','n4')]"/>
+                    <filter string="一体柱盆" name="filter_n5" domain="[('type','=','n5')]"/>
+                    <filter string="挂墙盆" name="filter_n6" domain="[('type','=','n6')]"/>
+                    <filter string="面盆龙头" name="filter_tap" domain="[('type','=','d')]"/>
+                    <filter string="厨盆龙头" name="filter_o" domain="[('type','=','o')]"/>
+                    <filter string="浴缸龙头" name="filter_p" domain="[('type','=','p')]"/>
+                    <filter string="智能系列" name="filter_e" domain="[('type','=','e')]"/>
+                    <filter string="浴室柜" name="filter_f" domain="[('type','=','f')]"/>
+                    <filter string="花洒" name="filter_g" domain="[('type','=','g')]"/>
+                    <filter string="淋浴房" name="filter_h" domain="[('type','=','h')]"/>
+                    <filter string="浴缸" name="filter_i" domain="[('type','=','i')]"/>
+                    <filter string="挂件" name="filter_j" domain="[('type','=','j')]"/>
+                    <filter string="配件" name="filter_k" domain="[('type','=','k')]"/>
+                    <filter string="水槽系列" name="filter_l" domain="[('type','=','l')]"/>
+                    <filter string="公共系列" name="filter_m" domain="[('type','=','m')]"/>
+                    <separator/>
+                    <filter string="已归档" name="filter_inactive" domain="[('active','=',False)]"/>
+                    <filter string="待上传" name="filter_to_upload" domain="[('state','!=','uploaded')]"/>
+                    <filter string="已上传" name="filter_uploaded" domain="[('state','in',['uploaded','updated'])]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="website_product_info_form" model="ir.ui.view">
+            <field name="name">产品表单视图</field>
+            <field name="model">product.info</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_partial" id="action_partial"
+                                string="部分完善" class="btn-primary" type="object"
+                                attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                        <button name="action_done" id="action_done"
+                                string="全部完善" class="btn-success" type="object"
+                                attrs="{'invisible': [('state', 'not in', ['draft','partial'])]}"/>
+                        <button name="action_uploaded" id="action_uploaded" string="已上传" class="btn-danger"
+                                type="object" attrs="{'invisible': [('state', 'not in', ['partial','done','updated'])]}"
+                                groups="base.group_system"/>
+                        <button name="action_draft" id="action_draft" groups="base.group_system"
+                                string="恢复草稿" class="btn-warning" type="object"
+                                attrs="{'invisible': [('state', 'not in', ['partial','done','uploaded','updated'])]}"/>
+                        <button name="action_updated" id="action_updated"
+                                string="信息更新" class="btn-primary" type="object"
+                                attrs="{'invisible': [('state', 'not in', ['uploaded'])]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" name="action_view_count_lhh_product" class="oe_stat_button"
+                                    icon="fa-sitemap" attrs="{'invisible': [('lhh_product_count', '=', 0)]}">
+                                <field name="lhh_product_count" widget="statinfo" string="关联产品"/>
+                            </button>
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="desc"/>
+                                <field name="color"/>
+                                <field name="size" placeholder='700x380x780mm'/>
+                                <field name="note"/>
+                                <field name="type"/>
+                                <field name="certification_id" widget="many2many_tags"
+                                       options="{'color_field': 'color'}"/>
+                                <field name="web_url" widget="url"
+                                       attrs="{'invisible': [('state','not in', ['uploaded','updated'])]}"/>
+
+                                <field name="edit_url" widget="url" attrs="{'invisible': [('web_url','=',False)]}"
+                                       groups="base.group_system"/>
+                            </group>
+                            <group>
+                                <field name="image" widget="pdf_viewer"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="产品组图">
+                                <field name="photo_ids" class="o_website_sale_image_list"
+                                       context="{'default_name': name, 'default_product_id': active_id}"
+                                       nolabel="1">
+                                    <kanban string="产品组图" class="o_attachments_previews">
+                                        <field name="id"/>
+                                        <field name="name"/>
+                                        <field name="image"/>
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="o_attachment oe_kanban_global_click o_website_sale_image_card">
+                                                    <div class="o_attachment_wrap">
+                                                        <div class="o_image_box">
+                                                            <div class="o_attachment_image"
+                                                                 t-attf-style="background-image:url({{kanban_image('product.photo', 'image', record.id.raw_value)}});"/>
+                                                            <div t-attf-class="o_image_overlay"
+                                                                 t-att-title="record.name.value"/>
+                                                            <div class="o_website_sale_image_card_title"
+                                                                 t-att-title="record.name.value">
+                                                                <field name="name"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <t t-set="size" t-value="[record.image.value][0]"/>
+                                                        <t t-set="size_status" t-value="'normal'"
+                                                           t-if="size.indexOf('Bytes') !== -1 or ( size.indexOf('Kb') !== -1 and size[2]=='.')"/>
+                                                        <t t-set="size_status" t-value="'warning'"
+                                                           t-elif="( size.indexOf('Kb') !== -1 and size[3]=='.')"/>
+                                                        <t t-set="size_status" t-value="'danger'" t-else=""/>
+                                                        <t t-set="message" t-value="'Acceptable file size'"
+                                                           t-if="size_status == 'normal'"/>
+                                                        <t t-set="message"
+                                                           t-value="'Huge file size. The image should be optimized/reduced.'"
+                                                           t-elif="size_status == 'warning'"/>
+                                                        <t t-set="message"
+                                                           t-value="'Optimization required! Reduce the image size or increase your compression settings.'"
+                                                           t-else=""/>
+
+                                                        <span t-attf-class="o_website_sale_image_card_size badge badge-#{size_status}"
+                                                              t-att-title="message">
+                                                            <t t-esc="record.image.value"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </page>
+                            <page string="多语言">
+                                <group>
+                                    <group string="繁体中文">
+                                        <field name="desc_t"/>
+                                        <field name="color_t"/>
+                                        <field name="note_t"/>
+                                        <field name="url_t" widget="url"/>
+                                    </group>
+                                    <group string="英文">
+                                        <field name="desc_e"/>
+                                        <field name="color_e"/>
+                                        <field name="note_e" placeholder="请手动翻译"/>
+                                        <field name="url_e" widget="url"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="图片压缩">
+                                <iframe frameborder="0" src="https://compressjpeg.com/zh/"
+                                        width="100%" height="500"/>
+                            </page>
+                            <page string="百度翻译">
+                                <a href="https://www.deepl.com/translator" target="new">
+                                    DeepL，一款优于谷歌（Google）、微软（Microsoft）和脸书（Facebook）的在线翻译器
+                                </a>
+                                <iframe frameborder="0" src="https://fanyi.baidu.com/"
+                                        width="100%" height="500"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="website_product_photo_form">
+            <field name="name">产品组图表单视图</field>
+            <field name="model">product.photo</field>
+            <field name="arch" type="xml">
+                <form string="产品组图">
+                    <div class="row o_website_sale_image_modal">
+                        <div class="col-md-6 col-xl-5">
+                            <div class="oe_title">
+                                <label class="small text-muted" for="name" string="图片名称"/>
+                                <h2>
+                                    <field name="name" placeholder="为要上传的图片命个名"/>
+                                </h2>
+                                <field name="product_id" invisible="1"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-7 text-center o_website_sale_image_modal_container">
+                            <field name="image" widget="image"/>
+                        </div>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="website_product_certification_tree">
+            <field name="name">产品认证列表视图</field>
+            <field name="model">product.certification</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="color" groups="base.group_system"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="website_product_certification_form">
+            <field name="name">产品认证表单视图</field>
+            <field name="model">product.certification</field>
+            <field name="arch" type="xml">
+                <form string="产品认证">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="color" groups="base.group_system"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_window_product_certification">
+            <field name="name">产品认证</field>
+            <field name="res_model">product.certification</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_window_website_product_info">
+            <field name="name">官网产品上架信息收集</field>
+            <field name="res_model">product.info</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="官网产品上架" id="menu_website_product_info" action="action_window_website_product_info"
+                  parent="sale.product_menu_catalog" sequence="4"/>
+        <menuitem name="产品认证" id="menu_product_certification" action="action_window_product_certification"
+                  parent="sale.product_menu_catalog" sequence="5"/>
+
+    </data>
+</odoo>
