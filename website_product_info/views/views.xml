@@ -201,6 +201,16 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="product_info_graph_view">
+            <field name="name">产品图表视图</field>
+            <field name="model">product.info</field>
+            <field name="arch" type="xml">
+                <graph string="各类别产品数量" type="pie">
+                    <field name="type"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="website_product_photo_form">
             <field name="name">产品组图表单视图</field>
             <field name="model">product.photo</field>
@@ -270,7 +280,7 @@
         <record model="ir.actions.act_window" id="action_window_website_product_info">
             <field name="name">官网产品上架信息收集</field>
             <field name="res_model">product.info</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,graph</field>
         </record>
 
         <menuitem name="官网产品上架" id="menu_website_product_info" action="action_window_website_product_info"
