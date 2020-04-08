@@ -95,7 +95,10 @@ class WalrusProduct(models.Model):
 
     @api.depends('name')
     def _compute_lhh_product_count(self):
-        self.lhh_product_count = self.env['lhh.product'].search_count([('name', 'like', self.name[:9])])
+        if self.name and len(self.name) > 8:
+            self.lhh_product_count = self.env['lhh.product'].search_count([('name', 'like', self.name[:9])])
+        else:
+            self.lhh_product_count = 0
 
     def action_view_count_lhh_product(self):
         action = self.env.ref('lhh_product.action_window_lhh_product').read()[0]
