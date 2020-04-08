@@ -82,7 +82,7 @@
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
-                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <widget name="web_ribbon" title="已归档" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                         <div class="oe_button_box" name="button_box">
                             <button type="object" name="action_view_count_lhh_product" class="oe_stat_button"
                                     icon="fa-sitemap" attrs="{'invisible': [('lhh_product_count', '=', 0)]}">
@@ -253,7 +253,7 @@
                 <form string="产品认证">
                     <sheet>
                         <field name="active" invisible="1"/>
-                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <widget name="web_ribbon" title="已归档" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                         <div class="oe_title">
                             <h1>
                                 <field name="name"/>
