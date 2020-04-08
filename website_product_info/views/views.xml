@@ -51,6 +51,8 @@
                     <filter string="已归档" name="filter_inactive" domain="[('active','=',False)]"/>
                     <filter string="待上传" name="filter_to_upload" domain="[('state','!=','uploaded')]"/>
                     <filter string="已上传" name="filter_uploaded" domain="[('state','in',['uploaded','updated'])]"/>
+                    <filter string="无尺寸图" name="filter_without_pdf" domain="[('image','=',False)]"/>
+                    <filter string="无组图" name="filter_without_photos" domain="[('photo_ids','=',False)]"/>
                 </search>
             </field>
         </record>
